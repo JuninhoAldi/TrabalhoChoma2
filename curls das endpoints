@@ -3,10 +3,10 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header 'User-Agent: insomnia/10.1.1' \
   --data '{
-	"title": "Desenvolver API",
-	"description": "Fazer todo o desenvolvimento da API de criar tasks",
-	"priority": "Alta",
-	"dueDate": "30/11"
+	"title": "Desenvolver Front End",
+	"description": "Fazer o desenvolvimento do front end do microserviço do board kanban",
+	"priority": "Media",
+	"dueDate": "15/12"
 }'
 
 
@@ -16,7 +16,7 @@ curl --request GET \
   --header 'User-Agent: insomnia/10.1.1'
 
 
-  curl --request PUT \
+ curl --request PUT \
   --url http://localhost:8080/api/tasks/1 \
   --header 'Content-Type: application/json' \
   --header 'User-Agent: insomnia/10.1.1' \
@@ -30,3 +30,6 @@ curl --request GET \
 '
 
 
+curl --request POST \
+  --url http://localhost:8080/api/tasks/1/move \
+  --header 'User-Agent: insomnia/10.1.1'
