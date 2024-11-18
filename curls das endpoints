@@ -33,3 +33,9 @@ curl --request GET \
 curl --request POST \
   --url http://localhost:8080/api/tasks/1/move \
   --header 'User-Agent: insomnia/10.1.1'
+
+
+curl --request DELETE \
+  --url http://localhost:8080/api/tasks/5 \
+  --header 'User-Agent: insomnia/10.1.1' \
+  --cookie JSESSIONID=2AC5851499B8E9EA13D546703690CD86
