@@ -27,9 +27,13 @@ public class TaskService {
     }
 
     public Task updateTask(Long id, Task task) {
-        if (taskRepository.existsById(id)) {
-            task.setId(id);
-            return taskRepository.save(task);
+        Optional<Task> existingTask = taskRepository.findById(id);
+        if (existingTask.isPresent()) {
+            Task updatedTask = existingTask.get();
+            updatedTask.setTitle(task.getTitle());
+            updatedTask.setDescription(task.getDescription());
+            updatedTask.setPriority(task.getPriority());
+            return taskRepository.save(updatedTask);
         }
         return null;
     }
@@ -38,5 +42,25 @@ public class TaskService {
         taskRepository.deleteById(id);
     }
 
-
+    public boolean moveTask(Long id) {
+        Optional<Task> optionalTask = taskRepository.findById(id);
+        if (optionalTask.isPresent()) {
+            Task task = optionalTask.get();
+            switch (task.getStatus()) {
+                case "A Fazer":
+                    task.setStatus("Em Progresso");
+                    break;
+                case "Em Progresso":
+                    task.setStatus("Concluído");
+                    break;
+                case "Concluído":
+                    return false;
+                default:
+                    return false;
+            }
+            taskRepository.save(task);
+            return true;
+        }
+        return false;
+    }
 }

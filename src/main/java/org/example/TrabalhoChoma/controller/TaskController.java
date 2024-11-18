@@ -36,6 +36,14 @@ public class TaskController {
         return taskService.updateTask(id, task);
     }
 
+    @PostMapping("/{id}/move")
+    public String moveTask(@PathVariable Long id) {
+        boolean moved = taskService.moveTask(id);
+        if (moved) {
+            return "Tarefa movida com sucesso!";
+        }
+        return "Não foi possível mover a tarefa. Verifique o status atual.";
+    }
 
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Long id) {
